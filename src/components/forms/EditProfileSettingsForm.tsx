@@ -4,6 +4,7 @@ import Image from 'next/image';
 import FormWrapper from './ui/ForWrapper';
 
 import { UploadDropzone } from '@/utils/uploadthing';
+import { Suspense } from 'react';
 
 import { updateUserProfile } from '@/server/actions/user';
 import { user_profile_schema } from '@/zod-schemas/user_profile';
@@ -53,16 +54,22 @@ export default function EditProfileSettingsForm({ details, profile }: Props) {
     <FormWrapper handleSubmit={form.handleSubmit}>
       <form.AppField name='display_name'>{(field) => <field.TextField label='Display Name' />}</form.AppField>
       <form.AppForm>
-        {form.state.values.profile_image_url && (
-          <Image
-            width={300}
-            height={300}
-            className='mx-auto rounded-lg'
-            alt={`${fullName} profile image`}
-            src={form.state.values.profile_image_url as string}
-            key={form.state.values.profile_image_url}
-          />
-        )}
+        <Suspense fallback={<div>Loading image...</div>}>
+          {form.state.values.profile_image_url && (
+            <div className='relative mx-auto w-fit overflow-hidden rounded-lg shadow-[3px_3px_0px_rgba(0,0,0,1)]'>
+              <div className='pop absolute inset-0 z-10 bg-black/10' />
+              <Image
+                width={300}
+                height={300}
+                className='mx-auto rounded-lg'
+                alt={`${fullName} profile image`}
+                src={form.state.values.profile_image_url as string}
+                key={form.state.values.profile_image_url}
+              />
+            </div>
+          )}
+        </Suspense>
+
         {form.state.values.profile_image_url && <h2>Upload a different image</h2>}
         {!form.state.values.profile_image_url && <h2>Upload a profile image</h2>}
         <form.AppField name='profile_image_url'>
