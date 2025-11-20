@@ -64,7 +64,7 @@ export default function EditProfileSettingsForm({ details, profile }: Props) {
         )}
         {profile?.profile_image_url && <h2>Upload a different image</h2>}
         {!profile?.profile_image_url && <h2>Upload a profile image</h2>}
-        <form.AppField name='display_name'>
+        <form.AppField name='profile_image_url'>
           {(field) => (
             <UploadDropzone
               endpoint='imageUploader'
