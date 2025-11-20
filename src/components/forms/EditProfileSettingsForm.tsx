@@ -59,7 +59,7 @@ export default function EditProfileSettingsForm({ details, profile }: Props) {
             height={300}
             className='mx-auto rounded-lg'
             alt={`${fullName} profile image`}
-            src={profile.profile_image_url}
+            src={form.state.values.profile_image_url as string}
           />
         )}
         {form.state.values.profile_image_url && <h2>Upload a different image</h2>}
