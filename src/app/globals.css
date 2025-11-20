@@ -1,26 +1,86 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+@import 'uploadthing/tw/v4';
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@source '../../node_modules/@uploadthing/react/dist';
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply bg-stone-950 text-white;
+}
+
+.gradient_underline {
+  background-image: linear-gradient(90deg, white, blue);
+  background-size: 0% 2px;
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  transition: all 200ms ease;
+}
+
+.gradient_underline_black {
+  background-image: linear-gradient(90deg, #000, #000);
+  background-size: 0% 2px;
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  transition: all 200ms ease;
+}
+
+.gradient_underline:hover {
+  background-size: 100% 2px;
+  cursor: pointer;
+}
+
+.gradient_underline_black:hover {
+  background-size: 100% 2px;
+  cursor: pointer;
+}
+
+.nice-hover-no-shadow {
+  @apply hover:shadow-[inset_-3px_-3px_5px_rgba(255,255,255,0.15),inset_4px_4px_10px_rgba(0,0,0,0.3)];
+}
+
+.nice-focus-no-shadow {
+  @apply focus:shadow-[inset_-3px_-3px_5px_rgba(255,255,255,0.15),inset_4px_4px_10px_rgba(0,0,0,0.3)];
+}
+
+.pop {
+  @apply shadow-[inset_4px_4px_5px_rgba(255,255,255,0.07),inset_-3px_-3px_10px_rgba(0,0,0,0.3)];
+}
+
+.subtle-pop {
+  @apply shadow-[inset_4px_4px_5px_rgba(255,255,255,0.07),inset_-3px_-3px_10px_rgba(0,0,0,0.3)];
+}
+
+h1 {
+  font-family: 'Roboto', sans-serif;
+  @apply text-2xl font-semibold md:text-3xl;
+}
+
+h2 {
+  font-family: 'Roboto', sans-serif;
+  @apply text-xl font-semibold md:text-2xl;
+}
+
+h3 {
+  font-family: 'Roboto', sans-serif;
+  @apply text-lg font-semibold md:text-xl;
+}
+
+h4 {
+  font-family: 'Roboto', sans-serif;
+  @apply text-base font-semibold md:text-lg;
+}
+
+article {
+  @apply flex w-full flex-col gap-5;
+}
+
+section {
+  @apply flex w-full flex-col gap-3;
+}
+
+ul {
+  @apply ml-5 list-disc;
 }
